@@ -91,7 +91,7 @@ The program will now prompt you to enter the app_id of the game you wish to expo
 
 ## Important Notice
 
-- This project does not provide any means or data to modify original game files or data in any way.
+- This project does not provide any means or data to modify original game files.
 - Its sole purpose is to provide a convenient way for players to archive and share their personal game manifests.
 - SteamArchiver is completely open-source and free to use. All commercial use is discouraged.
 
