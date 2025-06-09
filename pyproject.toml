@@ -1,0 +1,12 @@
+[project]
+name = "steamarchiver"
+version = "0.1.0"
+description = "A tool to export manifest files and secret for the games from Steam."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "bs4>=0.0.2",
+    "lxml>=5.4.0",
+    "python-dotenv>=1.1.0",
+    "vdf>=3.4",
+]
