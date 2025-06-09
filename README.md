@@ -9,13 +9,13 @@ SteamArchiver is a simple yet powerful utility for Steam users. It provides a qu
 
 # ✨ Features
 
-## ⚡ Fast & Lightweight: No heavy dependencies, ensuring quick execution.
+⚡ Fast & Lightweight: No heavy dependencies, ensuring quick execution.
 
-## 🔑 Key Export: Easily fetches and export your game manifests and keys.
+🔑 Key Export: Easily fetches and export your game manifests and keys.
 
-## 🔒 Secure: Your credentials are only used to communicate with SteamDB, and it will never break any data on your devices
+🔒 Secure: Your credentials are only used to communicate with SteamDB, and it will never break any data on your devices
 
-## ⚙️ Simple Setup: Get up and running with just a few commands.
+⚙️ Simple Setup: Get up and running with just a few commands.
 
 # 🚀 Getting Started
 
