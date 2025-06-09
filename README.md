@@ -73,8 +73,8 @@ f. In the Headers section (sometimes called "Request Headers"), find and copy th
 Now, open the .env file and paste the values in, like so:
 
 ```
-USER_AGENT="Your User-Agent string here"
-COOKIE="Your complete cookie string here"
+USER_AGENT=Your User-Agent string here
+COOKIE=Your complete cookie string here
 ```
 
 4. Export Your Game manifests and keys

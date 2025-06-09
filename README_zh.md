@@ -68,8 +68,8 @@ SteamArchiver 是一款为 Steam 用户设计的简单而强大的工具。它�
 
     现在，打开 `.env` 文件并像下面这样粘贴你的值：
     ```
-    USER_AGENT="Your User-Agent string here"
-    COOKIE="Your complete cookie string here"
+    USER_AGENT=Your User-Agent string here
+    COOKIE=Your complete cookie string here
     ```
 
 4.  **导出你的游戏清单和密钥**
