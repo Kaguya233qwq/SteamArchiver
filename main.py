@@ -101,19 +101,23 @@ def _get_steam_install_path() -> Path:
         import winreg
 
         key_path = "Software\\Valve\\Steam"
-        with winreg.OpenKey(
-            winreg.HKEY_LOCAL_MACHINE,
-            key_path,
-            0,
-            winreg.KEY_READ | winreg.KEY_WOW64_32KEY,
-        ) as key:
-            # Query the InstallPath value
-            value, _ = winreg.QueryValueEx(key, "InstallPath")
-            if not value:
-                print("Steam not found. Please install Steam first.")
-                _exit_after_seconds()
-            print(f"Steam installed in: `{Path(value)}` √")
-            return Path(value)
+        try:
+            with winreg.OpenKey(
+                winreg.HKEY_LOCAL_MACHINE,
+                key_path,
+                0,
+                winreg.KEY_READ | winreg.KEY_WOW64_32KEY,
+            ) as key:
+                # Query the InstallPath value
+                value, _ = winreg.QueryValueEx(key, "InstallPath")
+                if not value:
+                    print("Steam not found. Please install Steam first.")
+                    _exit_after_seconds()
+                print(f"Steam installed in: `{Path(value)}` √")
+                return Path(value)
+        except FileNotFoundError:
+            print("Steam not found in the registry. Please install Steam first.")
+            _exit_after_seconds()
     elif platform.system() == "Linux":
         raise PlatformNotSupportedError("This program is not supported on Linux yet.")
     elif platform.system() == "Darwin":  # macOS
@@ -127,13 +131,8 @@ def _get_steam_install_path() -> Path:
 def _read_config_of_steam(steam_install_path: Path) -> dict:
     """Reads the Steam configuration file"""
     config_path = steam_install_path / "config" / "config.vdf"
-    if not config_path.exists():
-        print(f"Steam configuration file not found at {config_path}.")
-        _exit_after_seconds()
-
     with open(config_path, "r", encoding="utf-8") as f:
         content = f.read()
-
     # Parse the VDF content
     import vdf
 
@@ -154,12 +153,11 @@ def _get_manifest_path_list(steam_install_path: Path, depot_ids: list) -> List[P
     return results
 
 
-def export(app_id: str) -> None:
+def export(steam_install_path: str, app_id: str) -> None:
     """Exports the game data as a zip file"""
     if not Path("output").exists():
         Path("output").mkdir()
-
-    steam_install_path = _get_steam_install_path()
+        
     data = _get_data_from_steamdb(app_id)
     depot_ids = data.get("depot_ids", [])
 
@@ -272,8 +270,9 @@ if __name__ == "__main__":
     try:
         print_banner()
         env_parser()
+        steam_install_path = _get_steam_install_path()
         app_id = input("Enter the App ID of the game: ").strip()
-        export(app_id)
+        export(steam_install_path, app_id)
     except SteamArchiverError as e:
         print(f"Error: {e}")
         _exit_after_seconds()
