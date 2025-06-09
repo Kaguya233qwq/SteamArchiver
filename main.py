@@ -180,6 +180,12 @@ def export(steam_install_path: str, app_id: str) -> None:
                     "key": key.get("DecryptionKey", ""),
                 }
             )
+            
+    if not local_depot_data:
+        print(f"It seems that you have not installed the App - {app_id} on your local machine")
+        print("If you're sure that you have installed it, please try 'Verify Integrity of Game Files' in Steam")
+        print("Then restart the program and try again")
+        _exit_after_seconds()
 
     # ganerate a file to record the local depot data
     keys_txt = app_path / "keys"
